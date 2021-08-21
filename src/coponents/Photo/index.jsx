@@ -24,7 +24,7 @@ const Photo = () => {
     }
   }, [])
 
-  const { url, title, date, explanation } = photoData
+  const { url, title } = photoData
   return (
     <div>
       {title}
