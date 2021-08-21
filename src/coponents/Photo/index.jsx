@@ -5,29 +5,22 @@ const apiKey = "api_key=Jr3NMgrEUirC5Yb18je6auQ5c8aUF3Lo9u4dqueO"
 const apiUrl = `https://api.nasa.gov/planetary/apod?${apiKey}`;
 
 const Photo = () => {
-    const [ photoUrl, setPhotoUrl ] = useState("");
+    const [ photoData, setPhotoData ] = useState("");
 
+    try {
     fetch(apiUrl).then(response => response.json())
         .then(response => {
-            const { url } = response;
-            setPhotoUrl(url);
+            setPhotoData(response);
         })
-
-    console.log(photoUrl)
-
-    // const [ photo, setPhoto ] = useState(false);
-
-    // useEffect(() => {
-    //     setLoading(true);
-    //     const {url} = fetchPhoto()
-    //     console.log(url)
-    //     setLoading(false)
-    // }, [])
-        
+    } catch(e) {
+        console.log(e);
+    }
+    const { url, title, date, explanation } = photoData;
 
     return (
         <div>
-        <img src={`${photoUrl}`} alt="esto es el alt"/>
+            {title}
+        <img src={`${url}`} alt={title}/>
         </div>
     )
 }
