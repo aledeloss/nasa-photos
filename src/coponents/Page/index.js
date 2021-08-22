@@ -29,8 +29,8 @@ const Page = () => {
     randomDay = fecha.slice(-2)
   }
   const apiUrl = `https://api.nasa.gov/planetary/apod?${apiKey}&date=${randomYear}-${randomMonth}-${randomDay}`
-  const shareableLink = `https://nasa-photos-eosin.vercel.app/fecha/${randomYear}-${randomMonth}-${randomDay}`
-  // const shareableLink = `localhost:3001/fecha/${randomYear}-${randomMonth}-${randomDay}`
+  const shareableLink = `https://nasa-photos-eosin.vercel.app/fecha/${randomYear}-${randomMonth < 10 ? '0' + randomMonth : randomMonth}-${randomDay}`
+  // const shareableLink = `localhost:3001/fecha/${randomYear}-${randomMonth < 10 ? '0' + randomMonth : randomMonth}-${randomDay}`
   useEffect(() => {
     try {
       fetch(apiUrl)
