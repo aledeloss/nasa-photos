@@ -2,23 +2,28 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import Photo from './coponents/Photo'
 import Menu from './coponents/Menu'
+import styled from 'styled-components'
 
 const apiKey = 'api_key=Jr3NMgrEUirC5Yb18je6auQ5c8aUF3Lo9u4dqueO'
+const randomDate = () => {
+  const randomYear = Math.floor(Math.random() * 26 + 1996) // update to current year and check that
+  const randomMonth = Math.floor(Math.random() * 12 + 1)
+  const randomDay = Math.floor(Math.random() * (randomMonth === 2 ? 28 : (randomMonth === (4 || 6 || 9 || 11) ? 30 : 31)) + 1)
+  console.log({ randomYear, randomMonth, randomDay })
+  return { randomYear, randomMonth, randomDay }
+}
+const { randomYear, randomMonth, randomDay } = randomDate()
+
+const apiUrl = `https://api.nasa.gov/planetary/apod?${apiKey}&date=${randomYear}-${randomMonth}-${randomDay}`
+
+const StyledPage = styled.div`
+  height: 100%;
+  min-height: 100vh;
+  background-color: #e0e0e0;
+`
 
 function App () {
   const [photoData, setPhotoData] = useState('')
-
-  const randomDate = () => {
-    const randomYear = Math.floor(Math.random() * 26 + 1996) // update to current year and check that
-    const randomMonth = Math.floor(Math.random() * 12 + 1)
-    const randomDay = Math.floor(Math.random() * (randomMonth === 2 ? 28 : (randomMonth === (4 || 6 || 9 || 11) ? 30 : 31)))
-    console.log({ randomYear, randomMonth, randomDay })
-
-    return ({ randomYear, randomMonth, randomDay })
-  }
-  const { randomYear, randomMonth, randomDay } = randomDate()
-
-  const apiUrl = `https://api.nasa.gov/planetary/apod?${apiKey}&date=${randomYear}-${randomMonth}-${randomDay}`
 
   useEffect(() => {
     try {
@@ -36,11 +41,11 @@ function App () {
   const { hdurl, title, date, explanation } = photoData
 
   return (
-    <div className="App">
-      <h1>NASA PIC OF THE DAY</h1>
+      <StyledPage className="App">
+      <h3>RANDOM NASA PIC OF THE DAY</h3>
       <Photo hdurl={hdurl} title={title} date={date} explanation={explanation} />
-      <Menu link={apiUrl}/>
-    </div>
+      <Menu link={apiUrl}/>|
+      </StyledPage>
   )
 }
 

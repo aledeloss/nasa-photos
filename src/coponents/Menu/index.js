@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Menu = ({ link }) => {
@@ -28,6 +29,10 @@ const Menu = ({ link }) => {
             })}
         </div>
   )
+}
+
+Menu.propTypes = {
+  link: PropTypes.string
 }
 
 export default Menu
