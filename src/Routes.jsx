@@ -6,7 +6,6 @@ import {
   useHistory
 } from 'react-router-dom'
 import Page from './coponents/Page'
-import Menu from './coponents/Menu'
 
 const Routes = () => {
   const history = useHistory()
@@ -14,7 +13,7 @@ const Routes = () => {
   return (
         <Router>
             <Switch history={history}>
-                <Route exact path='/fecha/:fecha' component={Menu}/>
+                <Route exact path='/fecha/:fecha' component={Page}/>
                 <Route exact path='/' component={Page}/>
                 {/* <Route component={'Page404'} /> */}
             </Switch>

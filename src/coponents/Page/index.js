@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import Photo from '../Photo'
 import Menu from '../Menu'
 import styled from 'styled-components'
@@ -11,19 +12,25 @@ const randomDate = () => {
   console.log({ randomYear, randomMonth, randomDay })
   return { randomYear, randomMonth, randomDay }
 }
-const { randomYear, randomMonth, randomDay } = randomDate()
-
-const apiUrl = `https://api.nasa.gov/planetary/apod?${apiKey}&date=${randomYear}-${randomMonth}-${randomDay}`
+let { randomYear, randomMonth, randomDay } = randomDate()
 
 const StyledPage = styled.div`
-  height: 100%;
-  min-height: 100vh;
-  background-color: #e0e0e0;
+height: 100%;
+min-height: 100vh;
+background-color: #e0e0e0;
 `
 
 const Page = () => {
   const [photoData, setPhotoData] = useState('')
-
+  const { fecha } = useParams()
+  if (fecha) {
+    randomYear = fecha.slice(-10, -6)
+    randomMonth = fecha.slice(-5, -3)
+    randomDay = fecha.slice(-2)
+  }
+  const apiUrl = `https://api.nasa.gov/planetary/apod?${apiKey}&date=${randomYear}-${randomMonth}-${randomDay}`
+  const shareableLink = `https://nasa-photos-eosin.vercel.app/fecha/${randomYear}-${randomMonth}-${randomDay}`
+  //const shareableLink = `localhost:3001/fecha/${randomYear}-${randomMonth}-${randomDay}`
   useEffect(() => {
     try {
       fetch(apiUrl)
@@ -43,7 +50,7 @@ const Page = () => {
       <StyledPage className="App">
       <h3>RANDOM NASA PIC OF THE DAY</h3>
       <Photo hdurl={hdurl} title={title} date={date} explanation={explanation} />
-      <Menu link={apiUrl}/>|
+      <Menu link={shareableLink}/>|
       </StyledPage>
   )
 }
