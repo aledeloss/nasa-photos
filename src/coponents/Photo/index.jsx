@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const StyledPhoto = styled.img`
     width: 95vw;
     border: solid 2px;
+    margin-top: 25px;
 `
 
 const Photo = ({ hdurl, title, date, explanation }) => {
