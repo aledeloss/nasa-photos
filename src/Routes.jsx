@@ -5,7 +5,7 @@ import {
   Route,
   useHistory
 } from 'react-router-dom'
-import Page from './coponents/Page'
+import Page from './components/Page'
 
 const Routes = () => {
   const history = useHistory()
