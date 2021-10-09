@@ -75,12 +75,12 @@ const Menu = ({ link, handleChangePic, handleDownload }) => {
       label: 'Change',
       icon: 'change',
       action: handleChangePic
-    },
-    {
-      label: 'Download',
-      icon: 'download',
-      action: handleDownload
     }
+    // {
+    //   label: 'Download',
+    //   icon: 'download',
+    //   action: handleDownload
+    // }
   ]
   return (
         <StyledMenu>

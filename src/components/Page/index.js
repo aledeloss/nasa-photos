@@ -7,13 +7,19 @@ import styled from 'styled-components'
 const apiKey = 'api_key=Jr3NMgrEUirC5Yb18je6auQ5c8aUF3Lo9u4dqueO'
 
 const StyledPageTitle = styled.div`
-  font-size: 2em;
+  font-size: 1.5em;
 `
 const StyledPage = styled.div`
   height: 100%;
-  padding: 2vw;
+  padding: 2vw 2vw 1vw 2vw;
   min-height: 100vh;
   background-color: #e0e0e0;
+`
+const StyledFooter = styled.div`
+  width: 100%;
+  position: static;
+  bottom: 30px;
+  margin-top: .5em;
 `
 
 const Page = () => {
@@ -38,6 +44,7 @@ const Page = () => {
 
   useEffect(() => {
     try {
+      setPhotoData('')
       setIsLoading(true)
       const { randomYear, randomMonth, randomDay } = randomDate()
       const apiUrl = `https://api.nasa.gov/planetary/apod?${apiKey}&date=${randomYear}-${randomMonth}-${randomDay}`
@@ -46,8 +53,11 @@ const Page = () => {
         .then((response) => {
           setPhotoData(response)
           setShareableLink(`https://nasa-photos-eosin.vercel.app/fecha/${randomYear}-${randomMonth < 10 ? '0' + randomMonth : randomMonth}-${randomDay < 10 ? '0' + randomDay : randomDay}`)
+          console.log(response)
+          if (response.code === 400) setNewPhoto(!newPhoto)
         })
       setIsLoading(false)
+      window.scrollTo(0, 0)
     } catch (e) {
       console.log(e)
       setNewPhoto(!newPhoto)
@@ -56,7 +66,7 @@ const Page = () => {
 
   const { hdurl, title, date, explanation } = photoData
 
-  const download = () => {
+  const download = (hdurl) => {
     const element = document.createElement('a')
     const file = new Blob(
       [hdurl
@@ -68,12 +78,25 @@ const Page = () => {
     element.click()
     console.log('hello')
   }
+  // async function download (hdurl) {
+  //   console.log(hdurl)
+  //   const image = await fetch(hdurl)
+  //   const imageBlog = await image.blob()
+  //   const imageURL = URL.createObjectURL(imageBlog)
+  //   const link = document.createElement('a')
+  //   link.href = imageURL
+  //   link.download = 'image.jpg'
+  //   document.body.appendChild(link)
+  //   link.click()
+  //   document.body.removeChild(link)
+  // }
 
   return (
       <StyledPage className='App'>
         <StyledPageTitle>RANDOM NASA PIC OF THE DAY</StyledPageTitle>
       {isLoading ? <div>Loading image</div> : <Photo hdurl={hdurl} title={title} date={date} explanation={explanation} />}
-      <Menu link={shareableLink} handleChangePic={() => setNewPhoto(!newPhoto)} handleDownload={() => download()}/>
+      <Menu link={shareableLink} handleChangePic={() => setNewPhoto(!newPhoto)} handleDownload={() => download(hdurl)}/>
+      <StyledFooter>Made by <a href="https://github.com/aledeloss" target="_blank" rel="noreferrer">Ale DeLos</a></StyledFooter>
       </StyledPage>
   )
 }

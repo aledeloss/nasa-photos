@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledPhotoTitle = styled.div`
+  margin-top: 0.5em;
   font-size: 1.5em;
 `
 const StyledPhoto = styled.img`
@@ -10,13 +11,19 @@ const StyledPhoto = styled.img`
     border: solid 2px;
     margin-top: 25px;
     margin-bottom: 2%;
+    border: solid white 5px;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+;
+
 `
 
 const Photo = ({ hdurl, title, date, explanation }) => {
   return (
     <div>
       <StyledPhotoTitle>{title}</StyledPhotoTitle>
-      <StyledPhoto src={`${hdurl}`} alt={title} />
+      <StyledPhoto loading="lazy" src={`${hdurl}`} alt={title} />
       <div>{explanation}</div>
       <div>Date: {date}</div>
     </div>
