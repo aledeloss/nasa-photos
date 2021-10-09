@@ -14,6 +14,10 @@ const StyledPage = styled.div`
   padding: 2vw 2vw 1vw 2vw;
   min-height: 100vh;
   background-color: #e0e0e0;
+  a {
+    text-decoration: none;
+    color: black;
+  }
 `
 const StyledFooter = styled.div`
   width: 100%;
@@ -33,7 +37,6 @@ const Page = () => {
     let randomYear = Math.floor(Math.random() * 26 + 1996) // update to current year
     let randomMonth = Math.floor(Math.random() * 12 + 1)
     let randomDay = Math.floor(Math.random() * (randomMonth === 2 ? 28 : (randomMonth === (4 || 6 || 9 || 11) ? 30 : 31)) + 1)
-    console.log({ randomYear, randomMonth, randomDay })
     if (fecha) {
       randomYear = fecha.slice(-10, -6)
       randomMonth = fecha.slice(-5, -3)
@@ -53,7 +56,6 @@ const Page = () => {
         .then((response) => {
           setPhotoData(response)
           setShareableLink(`https://nasa-photos-eosin.vercel.app/fecha/${randomYear}-${randomMonth < 10 ? '0' + randomMonth : randomMonth}-${randomDay < 10 ? '0' + randomDay : randomDay}`)
-          console.log(response)
           if (response.code === 400) setNewPhoto(!newPhoto)
         })
       setIsLoading(false)
