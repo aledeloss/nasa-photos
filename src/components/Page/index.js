@@ -68,30 +68,45 @@ const Page = () => {
 
   const { hdurl, title, date, explanation } = photoData
 
-  const download = (hdurl) => {
-    const element = document.createElement('a')
-    const file = new Blob(
-      [hdurl
-      ],
-      { type: 'image/*' }
-    )
-    element.href = URL.createObjectURL(file)
-    element.download = 'image.jpg'
-    element.click()
-    console.log('hello')
+  const toDataURL = (url) => {
+    return fetch('https://apod.nasa.gov/apod/image/0103/goddardrocket_orig_big.jpg', { mode: 'no-cors' }).then((response) => {
+      return response.blob()
+    }).then(blob => {
+      return URL.createObjectURL(blob)
+    })
   }
-  // async function download (hdurl) {
-  //   console.log(hdurl)
-  //   const image = await fetch(hdurl)
-  //   const imageBlog = await image.blob()
-  //   const imageURL = URL.createObjectURL(imageBlog)
-  //   const link = document.createElement('a')
-  //   link.href = imageURL
-  //   link.download = 'image.jpg'
-  //   document.body.appendChild(link)
-  //   link.click()
-  //   document.body.removeChild(link)
-  // }
+  const download = async (hdurl) => {
+    // const element = document.createElement('a')
+    // const file = new Blob(
+    //   [hdurl
+    //   ],
+    //   { type: 'image' }
+    // )
+    // element.href = URL.createObjectURL(file)
+    // element.download = 'image.jpg'
+    // element.click()
+    console.log('hello')
+    const a = document.createElement('a')
+    a.href = await toDataURL(hdurl)
+    a.download = 'myImage.jpg'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    // await fetch({
+    //   url: hdurl,
+    //   method: 'GET',
+    //   responseType: 'blob'
+    // })
+    //   .then((response) => {
+    //     const url = window.URL
+    //       .createObjectURL(new Blob([response], { type: 'image//jpge' }))
+    //     const link = document.createElement('a')
+    //     link.href = url
+    //     link.setAttribute('download', 'image.jpg')
+    //     document.body.appendChild(link)
+    //     link.click()
+    //   })
+  }
 
   return (
       <StyledPage className='App'>
