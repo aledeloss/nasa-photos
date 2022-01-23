@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const StyledMenu = styled.div`
   margin-top: 1vw;
@@ -8,8 +8,8 @@ const StyledMenu = styled.div`
   border: none;
   background-color: #e0e0e0;
   display: flex;
-  justify-content: center
-`
+  justify-content: center;
+`;
 
 const StyledButton = styled.button`
   background-color: pink;
@@ -28,9 +28,9 @@ const StyledButton = styled.button`
     opacity: 1.5;
   }
   &:active {
-    transform: scale(1.05)
+    transform: scale(1.05);
   }
-`
+`;
 
 const StyledTooltip = styled.div`
   width: 120px;
@@ -62,46 +62,41 @@ const StyledTooltip = styled.div`
     width: 230px;
     padding: 8px 8px;
     border-radius: 4px;
-  `
+  `;
 
-const Menu = ({ link, handleChangePic, handleDownload }) => {
+const Menu = ({ link, handleChangePic }) => {
   const buttons = [
     {
       label: 'Copy Link',
       icon: 'share',
-      action: () => navigator.clipboard.writeText(link)
+      action: () => navigator.clipboard.writeText(link),
     },
     {
       label: 'Change',
       icon: 'change',
-      action: handleChangePic
+      action: handleChangePic,
     },
-    {
-      label: 'Download',
-      icon: 'download',
-      action: handleDownload
-    }
-  ]
+  ];
   return (
-        <StyledMenu>
-            {buttons.map((button) => {
-              return (
-                <div key={button.label}>
-                  <StyledTooltip>Tooltip text</StyledTooltip>
-                  <StyledButton key={button.label} onClick={button.action}>
-                    {button.label}
-                  </StyledButton>
-                </div>
-              )
-            })}
-        </StyledMenu>
-  )
-}
+    <StyledMenu>
+      {buttons.map((button) => {
+        return (
+          <div key={button.label}>
+            <StyledTooltip>Tooltip text</StyledTooltip>
+            <StyledButton key={button.label} onClick={button.action}>
+              {button.label}
+            </StyledButton>
+          </div>
+        );
+      })}
+    </StyledMenu>
+  );
+};
 
 Menu.propTypes = {
   link: PropTypes.string,
   handleChangePic: PropTypes.func,
-  handleDownload: PropTypes.func
-}
+  handleDownload: PropTypes.func,
+};
 
-export default Menu
+export default Menu;
