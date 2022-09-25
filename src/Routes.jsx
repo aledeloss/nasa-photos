@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   useHistory
-} from 'react-router-dom'
-import Page from './components/Page'
+} from 'react-router-dom';
+import Page from './components/Page';
 
 const Routes = () => {
-  const history = useHistory()
+  const history = useHistory();
 
   return (
         <Router>
@@ -19,7 +19,7 @@ const Routes = () => {
             </Switch>
         </Router>
 
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;

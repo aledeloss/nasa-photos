@@ -41,8 +41,8 @@ const Page = () => {
         (randomMonth === 2
           ? 28
           : randomMonth === (4 || 6 || 9 || 11)
-          ? 30
-          : 31) +
+            ? 30
+            : 31) +
         1
     );
     if (fecha) {
@@ -83,16 +83,18 @@ const Page = () => {
   return (
     <StyledPage className='App'>
       <StyledPageTitle>RANDOM NASA PIC OF THE DAY</StyledPageTitle>
-      {isLoading ? (
+      {isLoading
+        ? (
         <div>Loading image</div>
-      ) : (
+          )
+        : (
         <Photo
           hdurl={hdurl}
           title={title}
           date={date}
           explanation={explanation}
         />
-      )}
+          )}
       <Menu
         link={shareableLink}
         handleChangePic={() => setNewPhoto(!newPhoto)}
