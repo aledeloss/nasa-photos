@@ -2,10 +2,10 @@ import React from 'react';
 import './App.css';
 import Routes from './Routes';
 
-function App () {
+export const App = () => {
   return (
-      <Routes />
+    <Routes />
   );
-}
+};
 
 export default App;
