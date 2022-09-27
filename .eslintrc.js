@@ -1,7 +1,13 @@
 module.exports = {
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
+    jest: true
   },
   extends: ['plugin:react/recommended', 'standard'],
   parser: '@typescript-eslint/parser',
@@ -15,6 +21,8 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     semi: ['error', 'always'],
-    'no-use-before-define': 'off'
+    'no-use-before-define': 'off',
+    'multiline-ternary': ['error', 'always-multiline'],
+    allowIndentationTabs: 'off'
   }
 };
