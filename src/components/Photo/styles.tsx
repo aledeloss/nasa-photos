@@ -1,7 +1,7 @@
 
 import styled from 'styled-components';
 
-export const StyledPhotoTitle = styled.div`
+export const StyledPhotoTitle = styled.h2`
   margin-top: 0.5em;
   font-size: 1.5em;
 `;

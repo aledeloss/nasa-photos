@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledPageTitle = styled.div`
+export const StyledPageTitle = styled.h1`
   font-size: 1.5em;
 `;
 
@@ -15,7 +15,7 @@ export const StyledPage = styled.div`
   }
 `;
 
-export const StyledFooter = styled.div`
+export const StyledFooter = styled.footer`
   width: 100%;
   position: static;
   bottom: 30px;
