@@ -35,7 +35,6 @@ const useGetPhotoData = (newPhoto: boolean, setNewPhoto: (arg: boolean) => void)
       }
       return { randomYear, randomMonth, randomDay };
     };
-    console.log('hi useEffect');
     try {
       setIsLoading(true);
       const { randomYear, randomMonth, randomDay } = randomDate();
