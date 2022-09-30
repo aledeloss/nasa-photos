@@ -14,9 +14,7 @@ const useGetPhotoData = (newPhoto: boolean, setNewPhoto: (arg: boolean) => void)
   const { fecha } = useParams <{ fecha: string }>();
   const [photoData, setPhotoData] = useState<Photo | null>(null);
   const [shareableLink, setShareableLink] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  console.log('hi there');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const randomDate = () => {
@@ -36,7 +34,6 @@ const useGetPhotoData = (newPhoto: boolean, setNewPhoto: (arg: boolean) => void)
       return { randomYear, randomMonth, randomDay };
     };
     try {
-      setIsLoading(true);
       const { randomYear, randomMonth, randomDay } = randomDate();
       const apiUrl = `https://api.nasa.gov/planetary/apod?${API_KEY}&date=${randomYear}-${randomMonth}-${randomDay}`;
       fetch(apiUrl)
@@ -44,7 +41,6 @@ const useGetPhotoData = (newPhoto: boolean, setNewPhoto: (arg: boolean) => void)
         .then((response) => {
           const { hdurl, title, date, explanation } = response;
           setPhotoData({ hdurl, title, date, explanation });
-          console.log(photoData);
           setShareableLink(
       `https://nasa-photos-eosin.vercel.app/fecha/${randomYear}-${
        randomMonth < 10 ? '0' + randomMonth : randomMonth
