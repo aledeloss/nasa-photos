@@ -1,29 +1,33 @@
 import styled from 'styled-components';
 
 export const StyledMenu = styled.div`
-  margin-top: 1vw;
+  margin-top: 3vw;
   margin-bottom: 1vw;
   border: none;
-  background-color: #e0e0e0;
+  background-color: transparent;
   display: flex;
   justify-content: center;
+  gap: 1.5em;
 `;
 
 export const StyledButton = styled.button`
-  background-color: pink;
-  width: 80px;
-  height: 30px;
+  width: 12em;
+  background-color: transparent;
+  color: #82030a;
+  height: 2.5em;
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items: center;
   border: none;
-  border-radius: 10px;
-  padding: 2px;
-  margin: 5px;
-  opacity: 0.8;
+  border-radius: 3.5em;
+  margin: 1em;
+  /* font-size: 1em; */
+  font-weight: 600;
   cursor: pointer;
+  border: solid #82030a 3px;
   &:hover {
-    opacity: 1.5;
+    background-color: #82030a;
+    color: #f8eeee;
   }
   &:active {
     transform: scale(1.05);

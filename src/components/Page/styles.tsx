@@ -8,7 +8,7 @@ export const StyledPage = styled.div`
   height: 100%;
   padding: 2vw 2vw 1vw 2vw;
   min-height: 100vh;
-  background-color: #e0e0e0;
+  background-color: #F8EEEE;
   a {
     text-decoration: none;
     color: black;

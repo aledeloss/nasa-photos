@@ -5,12 +5,12 @@ import { Button, MenuProps } from './types';
 const Menu = ({ link, handleChangePic }: MenuProps) => {
   const buttons: Button[] = [
     {
-      label: 'Copy Link',
+      label: 'COPY LINK',
       icon: 'share',
       action: () => navigator.clipboard.writeText(link)
     },
     {
-      label: 'Change',
+      label: 'CHANGE',
       icon: 'change',
       action: handleChangePic
     }
