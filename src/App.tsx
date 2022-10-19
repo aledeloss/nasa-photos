@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Routes from './Routes';
 
-export const App = () => {
+const App = () => {
   return (
     <Routes />
   );
