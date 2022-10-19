@@ -2,10 +2,10 @@ import React from 'react';
 import { StyledExplanation, StyledPhoto, StyledPhotoTitle } from './styles';
 
 interface PhotoProps {
-  hdurl: string,
-  date: string,
-  title: string,
-  explanation: string
+  hdurl?: string,
+  date?: string,
+  title?: string,
+  explanation?: string
 };
 
 const Photo = ({ hdurl, title, date, explanation }: PhotoProps) => {
